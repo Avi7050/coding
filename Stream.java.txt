@@ -1,3 +1,5 @@
+// Filter even numbers from a list.
+import java.util.stream.*;
 import java.util.*;
 class Employee{
     private String name;
@@ -24,14 +26,20 @@ class Employee{
         return name + ": " + salary;
     }
 }
-public class Stream {
+public class Main {
     public static void main(String[] args) {
         Employee e1 = new Employee("Avinash",150000);
         Employee e2 = new Employee("Sikender",120000);
         Employee e3 = new Employee("Manas",70000);
         
         List<Employee> emps = Arrays.asList(e1,e2,e3);
-        emps.stream().filter(e -> e.getName().startsWith("A")).forEach(e -> System.out.println(e));
+        // emps.stream().filter(e -> e.getName().startsWith("A")).forEach(e -> System.out.println(e));
+        
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9);
+        Map<String, List<Integer>> seperateNumbers = numbers.stream().collect(Collectors.groupingBy(e -> e%2==0 ? "Even":"Odd"));
+        System.out.println(seperateNumbers);
+        long count = numbers.stream().filter(n -> n > 5).count();
+        System.out.println(count);
        
         // for(Employee e : emps){
         //     if(e.getName().startsWith("A")){
